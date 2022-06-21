@@ -7,7 +7,7 @@ You can find lots of tutorials how to install and configure your machine, but he
 When your machine is complitely installed and configured, I advice you to directly make the signature.txt file (*shasum -> born2beroot.vdi*) and then directly zip the whole project folder. Due to undefined behavior of the *goinfre* folder try to keep the archive of your project on the external hdd or cloud, and unzip it just before the evaluation. 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                  Virtual Machine
+                                                        Virtual Machine
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : The interest and basic functioning of the *Virtual Machine* ?**
 
@@ -26,7 +26,7 @@ When your machine is complitely installed and configured, I advice you to direct
 **A** : *hostnamectl*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                           Password Policies and Expiration
+                                                Password Policies and Expiration
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : How to set password policies and expiration?**
 
@@ -83,7 +83,7 @@ Now you can do the same for the root.
 **A** : *sudo passwd (username)*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                          UFW
+                                                             UFW
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : What is UFW ?**
 
@@ -102,7 +102,7 @@ Now you can do the same for the root.
 **A** : *sudo ufw delete allow (port number)*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                          SSH
+                                                              SSH
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : What is SSH ?**
 
@@ -121,7 +121,7 @@ Now you can do the same for the root.
 **A** : *sudo service ssh restart*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                      Users and Groups
+                                                        Users and Groups
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Q : How to check if original user was added to *user42* and *sudo* groups ?**
@@ -155,7 +155,7 @@ Now you can do the same for the root.
 
 **A** : This should be done in 2 steps.
 
-First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* file : *sudo nano /etc/host* and change the hostname by simply replacing the line with the hostname. Reboot to to change : *sudo reboot*
+First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* file : *sudo nano /etc/host* and change the hostname by simply replacing the line with the hostname. Reboot to apply changes : *sudo reboot*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
                                                          Partitions
@@ -169,7 +169,7 @@ First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* 
 **A** : *lsblk*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                            Sudo
+                                                             Sudo
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : What is Sudo ?**
 
@@ -188,7 +188,7 @@ First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* 
 **A** : *cd /var/log/sudo/*
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                       Script Monitoring.sh
+                                                       Script and Crontab
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : Where is *monitoring.sh* is located**
 
@@ -216,10 +216,41 @@ First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* 
 
 #*/10 * * * * /usr/local/bin/monitoring.sh | wall
 
-**Q : What is grep ?**
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                           Script Example
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-**A** : *Grep* is a command line tool to search for a string of chars in a specific file.
+Here is an example of the script which was perfectly functional for me:
 
-**Q : What is awk?**
 
-**A** :
+#!/bin/bash
+echo -n '#Architecture: '; uname -a
+
+echo -n "#CPU physical : "; grep -c processor /proc/cpuinfo
+
+echo -n "#vCPU : "; cat /proc/cpuinfo | grep processor | wc -l
+
+echo -n "#Memory Usage: "; free -m | awk 'NR==2{printf "%s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
+
+echo -n "#Disk Usage: "; df -h | awk '$NF=="/"{printf "%d/%dGB (%s)\n", $3,$2,$5}'
+
+echo -n "#CPU load: "; mpstat | awk 'NR==4 {printf "%.2f%%\n", $6}'
+
+echo -n "#Last boot: "; who -b | awk '{printf "%s %s\n", $3, $4}'
+
+echo -n "#LVM use: "; if cat /etc/fstab | grep -q "/dev/mapper/"; then echo "yes"; else echo "no"; fi
+
+echo -n "#Connexions TCP : ";  netstat -an | grep ESTABLISHED |  wc -l ;
+
+echo -n "#User log : "; who | wc -l
+
+echo -n "#IP : "; hostname -I
+
+echo -n "#MAC : "; ip link show | awk '$1 == "link/ether" {print $2}'
+
+echo -n "#Sudo : "; journalctl -q | grep sudo | grep COMMAND | wc -l
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+                      
+                                                        
+

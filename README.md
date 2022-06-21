@@ -21,7 +21,7 @@ Virtual Machine
 
 **A** :  *APPArmor* is an important security module that allows the system administrator to restrict programs's capabilities and lock down the vulnerable processess.
 
-**Q : How to check operating system ?**
+**Q : How to check the operating system ?**
 
 **A** : ```hostnamectl```
 

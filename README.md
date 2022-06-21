@@ -2,24 +2,24 @@
 
 The 42 project Born2beroot explores the fundamentals of system administration by inviting us to install and configure a virtual machine with VirtualBox.
 
-You can find lots of tutorials how to install and configure your machine, but here I would like to give some examples of the most important questions during the defence of your project and the breif answers to them from my personal notes. Hope it can help you to clerify some points. The following manual is made for 100% project, without bonuses.
+You can find lots of tutorials how to install and configure your machine, but here I would like to give some examples of the most important questions during the defense of your project and the brief answers to them from my personal notes. Hope it can help you to clarify some points. The following manual is made for 100% project, without bonuses.
 
-When your machine is complitely installed and configured, I advice you to directly make the signature.txt file (*shasum -> born2beroot.vdi*) and then directly zip the whole project folder. Due to undefined behavior of the *goinfre* folder try to keep the archive of your project on the external hdd or cloud, and unzip it just before the evaluation. 
+When your machine is completely  installed and configured, I advise you to directly make the signature.txt file (*shasum -> born2beroot.vdi*) and then directly zip the whole project folder. Due to undefined behavior of the *goinfre* folder try to keep the archive of your project on the external hdd or cloud, and unzip it just before the evaluation. 
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Virtual Machine
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : The interest and basic functioning of the *Virtual Machine* ?**
 
-**A** : *Virtual Machine* is the virtualisation / emulation of a computer system which provides the functionality of a physical computer. It can virtually imitate different system architecture, allowing execution  of software applaications and operating systems written for another CPU or architectures.
+**A** : *Virtual Machine* is the virtualization / emulation of a computer system which provides the functionality of a physical computer. It can virtually imitate different system architecture, allowing execution  of software applications and operating systems written for another CPU or architectures.
 
 **Q : The difference between *Aptitude* and *Apt* ?**
 
-**A** : *Aptitude* and *Apt* are popular tools to handle package managment. Both can deal with all king of activities including installation, removal, search and etc... *Aptitude* is vaster in performance and integrates functionalities of *Apt* and its other variants including *apt-mark* and *apt-cache*.
+**A** : *Aptitude* and *Apt* are popular tools to handle package management. Both can deal with all kind of activities including installation, removal, search and etc... *Aptitude* is vaster in performance and integrates functionalities of *Apt* and its other variants including *apt-mark* and *apt-cache*.
 
 **Q : What is *APPArmor* ?**
 
-**A** :  *APPArmor* is an important security module that allows the system administrator to restrict programs's capabilities and lock down the vulnerable processess.
+**A** :  *APPArmor* is an important security module that allows the system administrator to restrict program's  capabilities and lock down the vulnerable processes.
 
 **Q : How to check the operating system ?**
 
@@ -35,9 +35,9 @@ Open  *common-password* file :  *sudo nano /etc/pam.d/common-password*, and then
 
 ```password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=-1 difok=7 enforce_for_root```
 
-Password must containt at least one lowercase : ```lcredit =-1```
+Password must contain at  least one lowercase : ```lcredit =-1```
 
-Password must containt at least one upperrcase : ```ucredit =-1```
+Password must contain at least one upperrcase : ```ucredit =-1```
 
 Maximum repeat of the same character : ```maxrepeat=3```
 
@@ -66,7 +66,7 @@ PASS_MIN_DAYS 2
 
 PASS_WARN_AGE 7
 ```
-*!!! Rememeber by doing this step, you will only change the password expiration policy for the new user. To change it for the original user and for the root follow the next step.*
+*!!! Remember by doing this step, you will only change the password expiration policy for the new user. To change it for the original user and for the root follow the next step.*
 
 ***Third Step*** : set password expiration policy for the original user and the root.
 
@@ -112,9 +112,9 @@ SSH
 
 **A** : ```sudo systemctl status ssh```
 
-**Q : How to connect throught *SSH* ?**
+**Q : How to connect through *SSH* ?**
 
-**A** : Open *iTerm (or any other terminal)* and type *ssh username@127.0.0.1 -p (port number)* , for the defence *port number* will be *4242*
+**A** : Open *iTerm (or any other terminal)* and type *ssh username@127.0.0.1 -p (port number)* , for the defense *port number* will be *4242*
 
 **Q : How to restart *SSH* ?**
 
@@ -162,7 +162,7 @@ Partitions
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : What is LVM ?**
 
-**A** : *LVM (Logical Volume Managment)* is a form of storage virtualization that allows a very flexible disk space management. *LVM* provides a hifg level view of the disk storage then the traditional view of the disk and partiotions and gives the system administrator much more flexibility in allocating storage to applications and users.
+**A** : *LVM (Logical Volume Management)* is a form of storage virtualisation that allows a very flexible disk space management. *LVM* provides a higher level view of the disk storage than the traditional view of the disk and partitions and gives the system administrator much more flexibility in allocating storage to applications and users.
 
 **Q : How to check the partitions of the virtual machine ?**
 
@@ -173,7 +173,7 @@ Sudo
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : What is Sudo ?**
 
-**A** : *Sudo (Substitute User and Do)* is a programm that enables users to run programs with the security priviliges of the superuser or any other users.
+**A** : *Sudo (Substitute User and Do)* is a program that enables users to run programs with the security privileges of the superuser or any other users.
 
 **Q : How to check sudo status ?**
 
@@ -196,11 +196,11 @@ Script and Crontab
 
 **Q : What is crontab ?**
 
-**A** : *Crontab* is a long running process taht executes commands at specific dates and time.
+**A** : *Crontab* is a long-running process that executes commands at specific dates and time.
 
 **Q : How to configurate crontab file ?**
 
-**A** : Open crontab file : *crontab -e* , and add the following line at the end of the file :
+**A** : Open crontab file : *crontab -e*, and add the following line at the end of the file :
 
 ```*/10 * * * * /usr/local/bin/monitoring.sh | wall```
 

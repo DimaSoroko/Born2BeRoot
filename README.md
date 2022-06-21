@@ -223,7 +223,9 @@ First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* 
 Here is an example of the script which was perfectly functional for me:
 
 
+
 #!/bin/bash
+
 echo -n '#Architecture: '; uname -a
 
 echo -n "#CPU physical : "; grep -c processor /proc/cpuinfo

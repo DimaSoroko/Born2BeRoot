@@ -123,7 +123,11 @@ Now you can do the same for the root.
 
 **A** : *sudo usermod -aG (group name) (user name)*
 
-**Q : **
+**Q : How to change the host name ?**
 
-**A** :
+**A** : This should be done in 2 steps.
+
+First type *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* file : *sudo nano /etc/host* and change the hostname by simply replacing the line with the hostname. Reboot to to change : *sudo reboot*
+
+
 

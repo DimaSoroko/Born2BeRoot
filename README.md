@@ -220,7 +220,8 @@ First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* 
                                                            Script Example
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Here is an example of the script which was perfectly functional for me:
+*Here is an example of the script which was perfectly functional for me:*
+
 
 
 

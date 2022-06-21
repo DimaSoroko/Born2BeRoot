@@ -33,54 +33,54 @@ Password Policies and Expiration
 **A** : ***First step*** : change password protection policies. 
 Open  *common-password* file :  *sudo nano /etc/pam.d/common-password*, and then add these values into the line:
 
-*password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=-1 difok=7 enforce_for_root*
+```password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=-1 difok=7 enforce_for_root```
 
-Password must containt at least one lowercase : *lcredit =-1*
+Password must containt at least one lowercase : ```lcredit =-1```
 
-Password must containt at least one upperrcase : *ucredit =-1*
+Password must containt at least one upperrcase : ```ucredit =-1```
 
-Maximum repeat of the same character : *maxrepeat=3*
+Maximum repeat of the same character : ```maxrepeat=3```
 
-Check if the password contains the user name in some form : *usercheck=-1 (value should not be zero)* 
+Check if the password contains the user name in some form : ```usercheck=-1``` *(value should not be zero)*
 
-The minimum number of characters that must be different from the old password : *difok=7*
+The minimum number of characters that must be different from the old password : ```difok=7```
 
-Same policy for root users : *enforce_for_root*
+Same policy for root users : ```enforce_for_root```
 
 ***Second Step*** : set the password expiration policy (for new user only).
-Open *login.defs* file : *sudo nano /etc/login.defs*
+Open *login.defs* file : ```sudo nano /etc/login.defs```
 
 Scroll down till the following lines :
-
+```
 PASS_MAX_DAYS 9999
 
 PASS_MIN_DAYS 0
 
 PASS_WARN_AGE 7
-
+```
 And change the values to :
-
+```
 PASS_MAX_DAYS 30
 
 PASS_MIN_DAYS 2
 
 PASS_WARN_AGE 7
-
-***!!! Rememeber by doing this step, you will only change the password expiration policy for the new user. To change it for the original user and the root follow the next step***
+```
+*!!! Rememeber by doing this step, you will only change the password expiration policy for the new user. To change it for the original user and the root follow the next step.*
 
 ***Third Step*** : set password expiration policy for the original user and the root.
 
 To check the password expiration policy, simply use the command ***chage -l (username)***. You will notice that all the values are still the same.
 
-To change *PASS_MAX_DAYS* from *9999* to *30* (as asked in the subject) : *sudo chage -m 30 (username)*
+To change *PASS_MAX_DAYS* from *9999* to *30* (as asked in the subject) : ```sudo chage -m 30 (username)```
 
-To change *PASS_MIN_DAYS* from *0* to *2* (as asked in the subject) : *sudo chage -M 2 (username)*
+To change *PASS_MIN_DAYS* from *0* to *2* (as asked in the subject) : ```sudo chage -M 2 (username)```
 
 Now you can do the same for the root.
 
 **Q : How to change password for any user ?**
 
-**A** : *sudo passwd (username)*
+**A** : ```sudo passwd (username)```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 UFW
@@ -91,15 +91,15 @@ UFW
 
 **Q : How to check  *UFW* status/see all the rules/ports ?**
 
-**A** : *sudo ufw status*
+**A** : ```sudo ufw status```
 
 **Q : How to add new port/rule ?**
 
-**A** : *sudo ufw allow (port number) 
+**A** : ```sudo ufw allow (port number)``` 
 
 **Q : How to delete port/rule** 
 
-**A** : *sudo ufw delete allow (port number)*
+**A** : ```sudo ufw delete allow (port number)```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 SSH
@@ -110,7 +110,7 @@ SSH
 
 **Q : How to check SSH status**
 
-**A** : *sudo systemctl status ssh*
+**A** : ```sudo systemctl status ssh```
 
 **Q : How to connect throught *SSH* ?**
 
@@ -118,7 +118,7 @@ SSH
 
 **Q : How to restart *SSH* ?**
 
-**A** : *sudo service ssh restart*
+**A** : ```sudo service ssh restart```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Users and Groups
@@ -126,27 +126,27 @@ Users and Groups
 
 **Q : How to check if original user was added to *user42* and *sudo* groups ?**
 
-**A** : *getent group user42/sudo*
+**A** : ```getent group user42/sudo```
 
 **Q : How to create a new user ?**
 
-**A** : *sudo adduser (new user name)*
+**A** : ```sudo adduser (new user name)```
 
 **Q : How to create a new group ?**
 
-**A** : *sudo groupadd (new group name)*
+**A** : ```sudo groupadd (new group name)```
 
 **Q : How to assign a user to the group ?**
 
-**A** : *sudo usermod -aG (group name) (user name)*
+**A** : ```sudo usermod -aG (group name) (user name)```
 
 **Q : How to delete a user ?**
 
-**A** : *sudo userdel -r (user name)*
+**A** : ```sudo userdel -r (user name)```
 
 **Q : How to delete a group ?**
 
-**A** : *sudo groupdel -r (group name)*
+**A** : ```sudo groupdel -r (group name)```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Hostname
@@ -155,7 +155,7 @@ Hostname
 
 **A** : This should be done in 2 steps.
 
-First type : *sudo hostnamectl set-hostname (new host name)*. Then open *hosts* file : *sudo nano /etc/host* and change the hostname by simply replacing the line with the hostname. Reboot to apply changes : *sudo reboot*
+First type : ```sudo hostnamectl set-hostname (new host name)```. Then open *hosts* file : ```sudo nano /etc/host``` and change the hostname by simply replacing the line with the hostname. Reboot to apply changes : ```sudo reboot```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Partitions
@@ -166,7 +166,7 @@ Partitions
 
 **Q : How to check the partitions of the virtual machine ?**
 
-**A** : *lsblk*
+**A** : ```lsblk```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Sudo
@@ -177,22 +177,22 @@ Sudo
 
 **Q : How to check sudo status ?**
 
-**A** : *dpkg -l | grep sudo*
+**A** : ```dpkg -l | grep sudo```
 
 **Q : How to give or remove *sudo* for a user ?**
 
-**A** : *su - (username)*
+**A** : ```su - (username)```
 
 **Q : Where is *sudo.log* is located ?**
 
-**A** : *cd /var/log/sudo/*
+**A** : ```cd /var/log/sudo/```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Script and Crontab
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : Where is *monitoring.sh* is located**
 
-**A** : *cd /usr/local/bin/*
+**A** : ```cd /usr/local/bin/```
 
 **Q : What is crontab ?**
 
@@ -202,19 +202,19 @@ Script and Crontab
 
 **A** : Open crontab file *crontab -e* and and the following line at the enf of the file :
 
-**/10 * * * * /usr/local/bin/monitoring.sh | wall*
+```*/10 * * * * /usr/local/bin/monitoring.sh | wall```
 
 **Q : How to change cron time to 1 minute ?**
 
 **A** : change *10* to *1* :
 
-**/1 * * * * /usr/local/bin/monitoring.sh | wall*
+```*/1 * * * * /usr/local/bin/monitoring.sh | wall```
 
 **Q : How to stop crontab showing script ?**
 
 **A** : add *#* sign in front of the line :
 
-#*/10 * * * * /usr/local/bin/monitoring.sh | wall
+```#*/10 * * * * /usr/local/bin/monitoring.sh | wall```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Script Example
@@ -222,7 +222,7 @@ Script Example
 
 *Here is an example of the script which was perfectly functional for me:*
 
-
+```
 #!/bin/bash
 
 echo -n '#Architecture: '; uname -a
@@ -250,7 +250,7 @@ echo -n "#IP : "; hostname -I
 echo -n "#MAC : "; ip link show | awk '$1 == "link/ether" {print $2}'
 
 echo -n "#Sudo : "; journalctl -q | grep sudo | grep COMMAND | wc -l
-
+```
 --------------------------------------------------------------------------------------------------------------------------------------------------------
                       
                                                         

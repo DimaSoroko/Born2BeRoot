@@ -23,7 +23,7 @@ Virtual Machine
 
 **Q : How to check operating system ?**
 
-**A** : *hostnamectl*
+**A** : ```hostnamectl```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 Password Policies and Expiration

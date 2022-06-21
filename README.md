@@ -66,21 +66,21 @@ PASS_MIN_DAYS 2
 
 PASS_WARN_AGE 7
 ```
-*!!! Rememeber by doing this step, you will only change the password expiration policy for the new user. To change it for the original user and the root follow the next step.*
+*!!! Rememeber by doing this step, you will only change the password expiration policy for the new user. To change it for the original user and for the root follow the next step.*
 
 ***Third Step*** : set password expiration policy for the original user and the root.
 
 To check the password expiration policy, simply use the command ***chage -l (username)***. You will notice that all the values are still the same.
 
-To change *PASS_MAX_DAYS* from *9999* to *30* (as asked in the subject) : ```sudo chage -m 30 (username)```
+To change *PASS_MAX_DAYS* from *9999* to *30* (as asked in the subject) : ```sudo chage -m 30 (user name)```
 
-To change *PASS_MIN_DAYS* from *0* to *2* (as asked in the subject) : ```sudo chage -M 2 (username)```
+To change *PASS_MIN_DAYS* from *0* to *2* (as asked in the subject) : ```sudo chage -M 2 (user name)```
 
 Now you can do the same for the root.
 
 **Q : How to change password for any user ?**
 
-**A** : ```sudo passwd (username)```
+**A** : ```sudo passwd (user name)```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 UFW
@@ -173,7 +173,7 @@ Sudo
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 **Q : What is Sudo ?**
 
-**A** : *Sudo (Substitute User and Do) is a programm that enables users to run programs with the security priviliges of the superuser or any other users.
+**A** : *Sudo (Substitute User and Do)* is a programm that enables users to run programs with the security priviliges of the superuser or any other users.
 
 **Q : How to check sudo status ?**
 
@@ -181,7 +181,7 @@ Sudo
 
 **Q : How to give or remove *sudo* for a user ?**
 
-**A** : ```su - (username)```
+**A** : ```su - (user name)```
 
 **Q : Where is *sudo.log* is located ?**
 
@@ -200,7 +200,7 @@ Script and Crontab
 
 **Q : How to configurate crontab file ?**
 
-**A** : Open crontab file *crontab -e* and and the following line at the enf of the file :
+**A** : Open crontab file : *crontab -e* , and add the following line at the end of the file :
 
 ```*/10 * * * * /usr/local/bin/monitoring.sh | wall```
 
